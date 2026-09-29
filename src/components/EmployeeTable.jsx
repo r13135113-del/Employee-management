@@ -1,0 +1,7 @@
+import { initials, money } from '../employeeData.js';
+
+export default function EmployeeTable({ employees, search, onSearch, onEdit, onDelete, loading }) {
+  return <section className="card list-card"><div className="list-top"><div><p className="eyebrow">DIRECTORY</p><h2>All employees <span>{employees.length}</span></h2></div><label className="search"><span>⌕</span><input type="search" value={search} onChange={event => onSearch(event.target.value)} placeholder="Search employees..." aria-label="Search employees"/></label></div><div className="table-wrap">
+    {loading ? <div className="empty-state"><p>Loading employees…</p></div> : employees.length ? <table><thead><tr><th>EMPLOYEE</th><th>DEPARTMENT</th><th>DESIGNATION</th><th>SALARY</th><th>ACTIONS</th></tr></thead><tbody>{employees.map(employee => <tr key={employee.id}><td><div className="employee-name"><span className="avatar">{initials(employee.name)}</span><span>{employee.name}<small className="employee-email">{employee.email}</small></span></div></td><td><span className="badge">{employee.department}</span></td><td>{employee.designation}</td><td>₹{money(employee.salary)}</td><td><button className="action-button" onClick={() => onEdit(employee)}>Edit</button><button className="action-button delete" onClick={() => onDelete(employee)}>Delete</button></td></tr>)}</tbody></table> : <div className="empty-state"><span>👥</span><h3>No employees found</h3><p>{search ? 'Try a different search.' : 'Add your first employee using the form.'}</p></div>}
+  </div></section>;
+}

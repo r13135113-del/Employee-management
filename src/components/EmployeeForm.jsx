@@ -1,0 +1,8 @@
+import { departments } from '../employeeData.js';
+
+export default function EmployeeForm({ form, editing, errors, onChange, onSubmit, onCancel }) {
+  const field = (label, name, placeholder, type = 'text') => <label>{label}<input type={type} name={name} value={form[name]} onChange={onChange} placeholder={placeholder} className={errors[name] ? 'invalid' : ''}/>{errors[name] && <small>{errors[name]}</small>}</label>;
+  return <section className="card form-card"><div className="card-heading"><div><p className="eyebrow">{editing ? 'EDIT MODE' : 'NEW RECORD'}</p><h2>{editing ? 'Edit employee' : 'Add an employee'}</h2></div>{editing && <button className="icon-button" onClick={onCancel} aria-label="Cancel editing">×</button>}</div>
+    <form onSubmit={onSubmit} noValidate><div className="form-row">{field('Full name', 'name', 'e.g. Priya Sharma')}{field('Work email', 'email', 'priya@company.com', 'email')}</div><div className="form-row">{field('Phone number', 'phone', '98765 43210')}<label>Department<select name="department" value={form.department} onChange={onChange} className={errors.department ? 'invalid' : ''}><option value="">Select department</option>{departments.map(item => <option key={item}>{item}</option>)}</select>{errors.department && <small>{errors.department}</small>}</label></div><div className="form-row">{field('Designation', 'designation', 'e.g. Product Designer')}{field('Monthly salary (₹)', 'salary', 'e.g. 50000', 'number')}</div><button className="primary-button" type="submit">{editing ? 'Save changes' : <><span>＋</span> Add employee</>}</button></form>
+  </section>;
+}

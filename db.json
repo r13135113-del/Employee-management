@@ -1,0 +1,22 @@
+{
+  "employees": [
+    {
+      "name": "rahul",
+      "email": "rahul233@gamil.com",
+      "phone": "1234567809",
+      "department": "Design",
+      "designation": "product designer",
+      "salary": 50000,
+      "id": 1
+    },
+    {
+      "name": "jhon",
+      "email": "jhon33@gamil.com",
+      "phone": "3422545667",
+      "department": "Human Resources",
+      "designation": "product designer",
+      "salary": 40000,
+      "id": 2
+    }
+  ]
+}
